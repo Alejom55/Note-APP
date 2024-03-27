@@ -1,0 +1,31 @@
+.container {
+    background-image: url('/assets/fondochingon.jpg');
+    background-size: cover;
+    background-position: center;
+    width: 100vw;
+    height: 100vh;
+  }
+
+.h1 {
+    color: whitesmoke;
+    font-size: 24px; 
+    font-style:oblique;
+    }
+
+.header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    /* padding: 40px; */
+    padding-top: 10px;
+    padding-right: 50px;
+    }
+
+.links-container {
+    display: flex;
+    }
+      
+.link {
+    margin-right: 20px; 
+    text-decoration: none;
+    }
