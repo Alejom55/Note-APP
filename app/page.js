@@ -1,5 +1,12 @@
-import HomePage from "./homePage/page"
+import Link from 'next/link';
 
-export default function initPage(){
-  return 
-}
+import Background from './components/Background';
+
+const HomePage = () => {
+  return (
+    Background()
+    
+  );
+};
+
+export default HomePage;
