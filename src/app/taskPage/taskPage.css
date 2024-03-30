@@ -11,6 +11,20 @@
     z-index: 1000; /* Asegura que el encabezado esté sobre otros elementos */
 }
 
+.containertask{
+    padding-left: 20px;
+    padding-top: 20px;
+    /* border: 2px solid black; */
+    margin-bottom: 20px;
+    background-color: #6e8295;
+}
+
+.container{
+    margin-top: 100px;
+    padding-left: 20px;
+    padding-right: 50px;
+}
+
 
 .background {
     position: fixed;
@@ -20,10 +34,11 @@
     height: 100%;
     background-color: #a2b4d4; /* Cambia este valor por el color que desees */
     z-index: -1; /* Asegura que el fondo esté detrás de otros elementos */
+    overflow-y: scroll; /* Agrega una barra de desplazamiento vertical */
 }
 
 .h1 {
     color: whitesmoke;
-    font-size: 20px; 
+    font-size: 30px; 
     font-family: "Poppins", sans-serif;
     }
