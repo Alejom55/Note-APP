@@ -1,7 +1,8 @@
+// Login.js
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 
-const Login = () => {
+const Login = ({ userList }) => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -20,11 +21,14 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Simulate login (replace with actual authentication logic)
-    const isAuthenticated = true; // Replace with actual authentication check
-    if (isAuthenticated) {
+    if (!userList || userList.length === 0) {
+      setLoginError(true);
+      return;
+    }
+
+    const user = userList.find(u => u.email === formData.email && u.password === formData.password);
+    if (user) {
       setLoginError(false);
-      // Redirect to home page after successful login
       router.push('/home');
     } else {
       setLoginError(true);

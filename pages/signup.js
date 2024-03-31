@@ -13,6 +13,9 @@ const SignUp = () => {
   const [passwordMatchError, setPasswordMatchError] = useState(false);
   const [emailDomainError, setEmailDomainError] = useState(false);
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
+  const [emailAlreadyExistsError, setEmailAlreadyExistsError] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const router = useRouter();
 
   const handleChange = (e) => {
@@ -26,6 +29,11 @@ const SignUp = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    // Reset error states
+    setPasswordMatchError(false);
+    setEmailDomainError(false);
+    setEmailAlreadyExistsError(false);
+
     // Validation
     if (formData.password !== formData.confirmPassword) {
       setPasswordMatchError(true);
@@ -34,6 +42,13 @@ const SignUp = () => {
 
     if (!formData.email.endsWith('@gmail.com')) {
       setEmailDomainError(true);
+      return;
+    }
+
+    // Check if email already exists in userList
+    const emailCount = userList.filter(user => user.email === formData.email).length;
+    if (emailCount >= 2) {
+      setEmailAlreadyExistsError(true);
       return;
     }
 
@@ -55,11 +70,20 @@ const SignUp = () => {
     }, 2000);
   };
 
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const toggleShowConfirmPassword = () => {
+    setShowConfirmPassword(!showConfirmPassword);
+  };
+
   return (
     <div>
       <h1>Sign Up</h1>
-      {passwordMatchError && <p style={{ color: 'red' }}>Las contraseñas no coinciden</p>}
+      {passwordMatchError && <p style={{ color: 'red' }}>{passwordMatchError}</p>}
       {emailDomainError && <p style={{ color: 'red' }}>El correo electrónico debe ser de dominio @gmail.com</p>}
+      {emailAlreadyExistsError && <p style={{ color: 'red' }}>El correo electrónico ya está en uso</p>}
       {registrationSuccess && (
         <p style={{ color: 'green' }}>
           ¡Registro exitoso! Serás redirigido a la página de inicio...
@@ -103,24 +127,26 @@ const SignUp = () => {
         <div>
           <label htmlFor="password">Password:</label>
           <input
-            type="password"
+            type={showPassword ? "text" : "password"}
             id="password"
             name="password"
             value={formData.password}
             onChange={handleChange}
             required
           />
+          <input type="checkbox" onChange={toggleShowPassword} /> Mostrar Contraseña
         </div>
         <div>
           <label htmlFor="confirmPassword">Confirm Password:</label>
           <input
-            type="password"
+            type={showConfirmPassword ? "text" : "password"}
             id="confirmPassword"
             name="confirmPassword"
             value={formData.confirmPassword}
             onChange={handleChange}
             required
           />
+          <input type="checkbox" onChange={toggleShowConfirmPassword} /> Verificar Contraseña
         </div>
         <button type="submit">Sign Up</button>
       </form>
@@ -128,8 +154,8 @@ const SignUp = () => {
       {/* Display registered users (for demonstration purposes) */}
       <h2>Usuarios Registrados</h2>
       <ul>
-        {userList.map((user) => (
-          <li key={user.email}>
+        {userList.map((user, index) => (
+          <li key={index}>
             {user.firstName} {user.lastName} - {user.email}
           </li>
         ))}
