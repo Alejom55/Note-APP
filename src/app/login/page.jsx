@@ -38,7 +38,7 @@ const Login = () => {
       {loginError && <p style={{ color: 'red' }}>Correo electrónico o contraseña incorrectos</p>}
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="email">Email:</label>
+          <label htmlFor="email">prueba:</label>
           <input
             type="email"
             id="email"
