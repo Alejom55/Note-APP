@@ -3,6 +3,7 @@ import { Schema, model, models } from "mongoose";
 const noteSchema = new Schema({
     title: {
       type: String,
+      trim: true,
       required: true
     },
     description: {
