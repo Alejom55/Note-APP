@@ -11,10 +11,10 @@ function UserProfile() {
     const { data: session, status } = useSession();
     console.log(session, status)
     const autenticado = () => {
-      if (status === "authenticated" && session) {
-        const { user } = session;
-        return user;
-      }
+        if (status === "authenticated" && session) {
+            const { user } = session;
+            return user;
+        }
     }
 
     const fetchFullname = async () => {
@@ -22,7 +22,7 @@ function UserProfile() {
         try {
             const response = await axios.get(`/api/tasks/${autenticado()._id}`);
             console.log(response.data.data)
-            setFullname(response.data.data.fullname);
+            setFullname(response.data.data.notes);
         } catch (error) {
             console.error('Error retrieving user fullname:', error);
             setFullname('');
@@ -41,7 +41,16 @@ function UserProfile() {
             <button onClick={fetchFullname}>Search</button>
 
             {loading && <p>Loading...</p>}
-            {fullname && <p>User Fullname: {fullname}</p>}
+            {fullname && <p>User Fullname: {fullname.map(task => (
+                <div key={task._id}>
+                    <h3>
+                        {task.title}
+                    </h3>
+                    <p>
+                        {task.description}
+                    </p>
+                </div>
+            ))}</p>}
         </div>
     );
 }
