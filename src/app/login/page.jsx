@@ -31,8 +31,8 @@ function LogInPage() {
   };
 
   return (
-    <div>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+    <div className="login-container"> 
+    {error && <p style={{ color: 'red' }}>{error}</p>}
       <h1>Iniciar Sesion</h1>
       <form onSubmit={handleSubmit}>
         <div>

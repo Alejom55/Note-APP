@@ -45,53 +45,54 @@ function SignUp() {
     };
 
     return (
-        <div className="register-container"> 
-
-
+        
+        <div className="register-container">
             {error && <p style={{ color: 'red' }}>{error}</p>}
-            <h1>Registrarse</h1>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <input
-                        type="text"
-                        name="fullname"
-                        placeholder='Nombre completo'
-                        required
-                    />
-                </div>
-                <div>
-                    <input
-                        type="email"
-                        name="email"
-                        placeholder='Correo electrónico'
-                        required
-                    />
-                </div>
-                <div>
-                    <input
-                        type="password"
-                        id="password"
-                        name="password"
-                        placeholder='Contraseña'
-                        required
-                    />
-                </div>
-                <div>
-
-                    <input
-                        type="password"
-                        id="confirmPassword"
-                        name="confirmPassword"
-                        placeholder='Confirmar Contraseña'
-                        required
-                    />
-                </div>
-                <button type="submit">Registrarse</button>
-            </form>
-            <FaClipboardList size="2em"/>
-
+            <div className="input-wrapper">
+                <h1>Registrarse</h1>
+                <h2>Gestor</h2>
+                <form onSubmit={handleSubmit}>
+                    <div>
+                        <input
+                            type="text"
+                            name="fullname"
+                            placeholder='Nombre completo'
+                            required
+                        />
+                    </div>
+                    <div>
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder='Correo electrónico'
+                            required
+                        />
+                    </div>
+                    <div>
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder='Contraseña'
+                            required
+                        />
+                    </div>
+                    <div>
+                        <input
+                            type="password"
+                            id="confirmPassword"
+                            name="confirmPassword"
+                            placeholder='Confirmar Contraseña'
+                            required
+                        />
+                    </div>
+                    <button type="submit">Registrarse</button>
+                </form>
+            </div>
+            <FaClipboardList className="clipboard-icon" />
         </div>
     );
+    
 }
 
 export default SignUp;
