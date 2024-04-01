@@ -18,7 +18,8 @@ const handler = nextAuth({
                 if (!userFound) {
                     throw new Error("Email o contraseña incorrectos");
                 }
-                const passwordMatch = bcrypt.compare(credentials?.password, userFound.password)
+                console.log(userFound);
+                const passwordMatch = await bcrypt.compare(credentials?.password, userFound.password)
                 if (!passwordMatch) {
                     throw new Error("Email o contraseña incorrectos");
                 }
