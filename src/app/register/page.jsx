@@ -1,13 +1,17 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios, { AxiosError } from 'axios';
-import { signIn } from 'next-auth/react';
+import { signIn, getSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
+import RedirectAuth from '@/components/redirectAuth';
+
 import './register.css';
 
 function SignUp() {
     const [error, setError] = useState();
     const router = useRouter();
+    // RedirectAuth();
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);

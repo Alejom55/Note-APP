@@ -1,5 +1,5 @@
 'use client'
-import { useSession } from "next-auth/react";
+import { useSession, signOut } from "next-auth/react";
 
 function DashboardPage() {
   const { data: session, status } = useSession();
@@ -8,8 +8,13 @@ function DashboardPage() {
     <div>
       <h1>Dashboard</h1>
       <pre>
-        {JSON.stringify({ session, status }, null, 2)}
+        <code>
+          {JSON.stringify({ session, status }, null, 2)}
+        </code>
       </pre>
+      <button onClick={signOut}>
+        Cerrar sesion
+      </button>
     </div>
   );
 }

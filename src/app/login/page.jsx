@@ -1,12 +1,16 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { signIn } from 'next-auth/react';
+
 import { useRouter } from 'next/navigation';
 import './login.css';
+import RedirectAuth from '@/components/redirectAuth';
 
 function LogInPage() {
   const [error, setError] = useState();
   const router = useRouter();
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -17,8 +21,10 @@ function LogInPage() {
       redirect: false,
     })
 
-    if (resSignIn?.error) return (setError(resSignIn.error));
+    if (resSignIn?.error) setError(resSignIn.error);
+    else if (resSignIn?.ok) router.push('/dashboard');
 
+    if (resSignIn?.error) return (setError(resSignIn.error));
     if (resSignIn?.ok) return router.push('/dashboard');
 
 
