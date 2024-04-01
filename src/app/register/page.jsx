@@ -1,10 +1,17 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios, { AxiosError } from 'axios';
+import { signIn, getSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+import RedirectAuth from '@/components/redirectAuth';
+
 import './register.css';
 import { FaClipboardList } from "react-icons/fa6";
 function SignUp() {
     const [error, setError] = useState();
+    const router = useRouter();
+    // RedirectAuth();
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
@@ -22,7 +29,16 @@ function SignUp() {
                 password: formData.get('password'),
                 fullname: formData.get('fullname')
             });
-            console.log(res);
+
+            const restSignIn = await signIn('credentials', {
+                email: res.data.email,
+                password: formData.get('password'),
+                redirect: false,
+            })
+            if (restSignIn.ok) {
+                router.push('/dashboard');
+            }
+            // console.log(res);
         } catch (error) {
             console.log(error);
             if (error instanceof AxiosError) {

@@ -1,68 +1,61 @@
 "use client"
-import React, { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import React, { useState, useEffect } from 'react';
+import { signIn } from 'next-auth/react';
 
-const Login = () => {
-  const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-  });
-  const [loginError, setLoginError] = useState(false);
+import { useRouter } from 'next/navigation';
+import './login.css';
+import RedirectAuth from '@/components/redirectAuth';
+
+function LogInPage() {
+  const [error, setError] = useState();
   const router = useRouter();
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const formData = new FormData(e.currentTarget);
 
-    // Simulate login (replace with actual authentication logic)
-    const isAuthenticated = true; // Replace with actual authentication check
-    if (isAuthenticated) {
-      setLoginError(false);
-      // Redirect to home page after successful login
-      router.push('/home');
-    } else {
-      setLoginError(true);
-    }
+    const resSignIn = await signIn('credentials', {
+      email: formData.get('email'),
+      password: formData.get('password'),
+      redirect: false,
+    })
+
+    if (resSignIn?.error) setError(resSignIn.error);
+    else if (resSignIn?.ok) router.push('/dashboard');
+
+    if (resSignIn?.error) return (setError(resSignIn.error));
+    if (resSignIn?.ok) return router.push('/dashboard');
+
+
   };
 
   return (
     <div>
-      <h1>Login</h1>
-      {loginError && <p style={{ color: 'red' }}>Correo electrónico o contraseña incorrectos</p>}
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+      <h1>Iniciar Sesion</h1>
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="email">prueba:</label>
           <input
             type="email"
-            id="email"
             name="email"
-            value={formData.email}
-            onChange={handleChange}
+            placeholder='Correo electrónico'
             required
           />
         </div>
         <div>
-          <label htmlFor="password">Password:</label>
           <input
             type="password"
             id="password"
             name="password"
-            value={formData.password}
-            onChange={handleChange}
+            placeholder='Contraseña'
             required
           />
         </div>
-        <button type="submit">Login</button>
+        <button type="submit">Iniciar sesion</button>
       </form>
     </div>
   );
-};
+}
 
-export default Login;
+export default LogInPage;

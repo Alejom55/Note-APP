@@ -1,13 +1,16 @@
+// 'use client'
 import "./homepage.css"
 import Link from 'next/link';
-import { FaClipboardList } from "react-icons/fa6";
+import RedirectAuth from "@/components/redirectAuth";
 
-export default function HomePage() {
+export default async function HomePage() {
+  await RedirectAuth();
     return (
       <div className="container">
-        <div className="header">
+        <div className="header"></div>
         <div className="links-container">
-        </div>
+        <Link href = "/login" className="link"><h1 className="h1" >Iniciar Sesion</h1></Link>  
+        <Link href = "/register" className="link"><h1 className="h1" >Registrarse</h1></Link> 
         </div>
         
         </div> 
