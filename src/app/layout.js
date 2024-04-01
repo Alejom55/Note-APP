@@ -17,8 +17,7 @@ export default function RootLayout({ children }) {
       <body>
         <Providers>{children}</Providers>
       </body>
-      {/* No es necesario importar la fuente aquí */}
-      <body>{children}</body>
+      {/* <body>{children}</body> */}
     </html>
   );
 }

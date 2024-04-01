@@ -1,16 +1,14 @@
 "use client"
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios, { AxiosError } from 'axios';
-import { signIn, getSession } from 'next-auth/react';
+import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import RedirectAuth from '@/components/redirectAuth';
 
-import './register.css';
 import { FaClipboardList } from "react-icons/fa6";
+import './register.css';
 function SignUp() {
     const [error, setError] = useState();
     const router = useRouter();
-    // RedirectAuth();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -38,7 +36,6 @@ function SignUp() {
             if (restSignIn.ok) {
                 router.push('/dashboard');
             }
-            // console.log(res);
         } catch (error) {
             console.log(error);
             if (error instanceof AxiosError) {
@@ -48,7 +45,7 @@ function SignUp() {
     };
 
     return (
-        <div className="register-container"> {/* Aplica la clase aquí */}
+        <div className="register-container"> 
 
 
             {error && <p style={{ color: 'red' }}>{error}</p>}
