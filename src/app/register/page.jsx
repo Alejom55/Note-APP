@@ -91,7 +91,7 @@ function SignUp() {
                 </div>
                 <button type="submit">Registrarse</button>
             </form>
-            <FaClipboardList size/>
+            <FaClipboardList size="2em"/>
 
         </div>
     );
