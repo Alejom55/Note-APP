@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import axios, { AxiosError } from 'axios';
 import './register.css';
-
+import { FaClipboardList } from "react-icons/fa6";
 function SignUp() {
     const [error, setError] = useState();
     const handleSubmit = async (e) => {
@@ -32,7 +32,9 @@ function SignUp() {
     };
 
     return (
-        <div>
+        <div className="register-container"> {/* Aplica la clase aquí */}
+
+
             {error && <p style={{ color: 'red' }}>{error}</p>}
             <h1>Registrarse</h1>
             <form onSubmit={handleSubmit}>
@@ -62,6 +64,7 @@ function SignUp() {
                     />
                 </div>
                 <div>
+
                     <input
                         type="password"
                         id="confirmPassword"
@@ -72,6 +75,8 @@ function SignUp() {
                 </div>
                 <button type="submit">Registrarse</button>
             </form>
+            <FaClipboardList size/>
+
         </div>
     );
 }
