@@ -1,10 +1,13 @@
 "use client"
 import React, { useState } from 'react';
 import axios, { AxiosError } from 'axios';
+import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 import './register.css';
 
 function SignUp() {
     const [error, setError] = useState();
+    const router = useRouter();
     const handleSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
@@ -22,7 +25,16 @@ function SignUp() {
                 password: formData.get('password'),
                 fullname: formData.get('fullname')
             });
-            console.log(res);
+
+            const restSignIn = await signIn('credentials', {
+                email: res.data.email,
+                password: formData.get('password'),
+                redirect: false,
+            })
+            if (restSignIn.ok) {
+                router.push('/dashboard');
+            }
+            // console.log(res);
         } catch (error) {
             console.log(error);
             if (error instanceof AxiosError) {
