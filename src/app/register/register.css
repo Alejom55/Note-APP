@@ -1,24 +1,69 @@
 .register-container {
     background-image: url("../../../public/images/registro.png");
     display: flex;
-    flex-direction: column; /* Cambia el eje principal al eje vertical */
-    justify-content: center; /* Centra verticalmente los elementos hijos */
-    align-items: center; /* Centra horizontalmente los elementos hijos */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     height: 100vh;
     text-align: center;
-    /* Otros estilos según sea necesario */
 }
 
-.register-container h1 {
-    margin-bottom: 20px; /* Espacio entre el título y los campos de entrada */
+.input-wrapper {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.input-wrapper h1 {
+    margin-bottom: 20px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 42px;
+    font-weight: bold;
     color: #252797;
+    background: linear-gradient(45deg, #FF8C00, #FF0080);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: mountain 10s infinite alternate;
 }
 
-.register-container input {
-    background-color: transparent;
-    border: 1px solid #ccc;
+.input-wrapper input {
+    background-color: #ffffff; /* Color blanco */
+    border: none;
+    border-radius: 10px;
     margin: 10px;
-    padding: 5px;
-    /* Otros estilos según sea necesario */
+    padding: 10px;
+    outline: none;
 }
 
+.input-wrapper input:focus {
+    border: 2px solid #fff;
+}
+
+.clipboard-icon {
+    color: white;
+    margin-top: 10px;
+    font-size: 120px;
+}
+
+.input-wrapper button {
+    background-image: linear-gradient(to right, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8b00ff);
+    color: rgb(248, 245, 245);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    background-size: 600%;
+    animation: gradient 10s infinite;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0%;
+    }
+    100% {
+        background-position: 100%;
+    }
+}
