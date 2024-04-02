@@ -2,13 +2,15 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 function CreateTaskForm() {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [error, setError] = useState(null);
     const { data: session, status } = useSession();
-    console.log(session, status)
+    const router = useRouter();
+    // console.log(session, status)
     const autenticado = () => {
         if (status === "authenticated" && session) {
             const { user } = session;
@@ -22,10 +24,10 @@ function CreateTaskForm() {
                 title,
                 description
             });
-            console.log(response.data); // Maneja la respuesta según sea necesario
-            // Aquí podrías actualizar el estado de tu aplicación o redirigir a otra página, por ejemplo
+            router.push('/dashboard');
+            // console.log(response.data);
         } catch (error) {
-            setError(error.response?.data?.message || 'Something went wrong');
+            setError(error.response?.data?.message || 'Algo salio mal, intenta de nuevo.');
         }
     };
 
@@ -35,7 +37,7 @@ function CreateTaskForm() {
             <h2>Create Task</h2>
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label>Title:</label>
+                    <label>Titulo:</label>
                     <input
                         type="text"
                         value={title}
@@ -44,13 +46,13 @@ function CreateTaskForm() {
                     />
                 </div>
                 <div>
-                    <label>Description:</label>
+                    <label>Descripcion:</label>
                     <textarea
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
                     />
                 </div>
-                <button type="submit">Create Task</button>
+                <button type="submit">Crear tarea</button>
             </form>
         </div>
     );
