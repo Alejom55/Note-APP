@@ -6,8 +6,9 @@ import { useRouter } from 'next/navigation';
 import { FaEye, FaEyeSlash } from 'react-icons/fa'; // Importar los iconos de ojo
 import { FaClipboardList } from "react-icons/fa6";
 import { IoExitOutline } from "react-icons/io5";
-
 import './register.css';
+
+
 const ExitButton = () => {
   const router = useRouter();
 
@@ -25,6 +26,7 @@ const ExitButton = () => {
 function SignUp() {
   const [error, setError] = useState();
   const [showPassword, setShowPassword] = useState(false);
+  const [registrationSuccess, setRegistrationSuccess] = useState(false); // Estado para el mensaje de éxito
   const router = useRouter();
 
   const handleSubmit = async (e) => {
@@ -52,7 +54,10 @@ function SignUp() {
       });
 
       if (restSignIn.ok) {
-        router.push('/dashboard');
+        setRegistrationSuccess(true); // Establecer el estado de éxito del registro a true
+        setTimeout(() => {
+          router.push('/login'); // Redireccionar a la página de inicio de sesión después de 3 segundos
+        }, 3000);
       }
     } catch (error) {
       console.log(error);
@@ -65,6 +70,9 @@ function SignUp() {
   return (
     <div className="register-container">
       {error && <p style={{ color: 'red' }}>{error}</p>}
+      {registrationSuccess && (
+        <p style={{ color: 'green' }}>¡Registro exitoso! Serás redireccionado a la página de inicio de sesión.</p>
+      )}
       <ExitButton />
       <div className="input-wrapper">
         <h1>Registrate en nuestro</h1>
@@ -88,20 +96,16 @@ function SignUp() {
             />
           </div>
           <div className="input-group">
-
             <input
               type={showPassword ? 'text' : 'password'}
               id="password"
               name="password"
               placeholder='Contraseña'
               required
-
             />
-
-            <button className="eye-button" onClick={() => setShowPassword(!showPassword)}>
-              {showPassword ? <FaEyeSlash className='eye' /> : <FaEye className='eye' />}
+            <button type="button" className="eye-button" onClick={() => setShowPassword(!showPassword)}>
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
             </button>
-
           </div>
           <div className="input-group">
             <input
@@ -111,9 +115,8 @@ function SignUp() {
               placeholder='Confirmar Contraseña'
               required
             />
-
           </div>
-          <button type="submit" className='register-button'>Registrarse</button>
+          <button type="submit">Registrarse</button>
         </form>
       </div>
     </div>

@@ -1,6 +1,79 @@
-.login-container{
+
+.login-container {
     background-size: cover;
     background-position: center;
     width: 100vw;
+    background-image: url("../../../public/images/imagen_login.png");
+    background-position: center 0.5px; /* Mueve la imagen hacia abajo 50px desde el centro */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     height: 100vh;
+    text-align: center;
 }
+.login-container h1{
+    font-size: 36px; /* Tamaño de fuente más grande */
+    color: #333; /* Color del texto */
+    margin-bottom: 25px;
+}
+.input-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px; /* Espacio entre cada input y su icono */
+}
+
+.input-group input {
+    /* Estilos para los inputs */
+    padding: 10px;
+    margin-right: 10px; /* Espacio entre el input y el icono */
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.input-group button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.login-button {
+    /* Estilos para el botón de inicio de sesión */
+    background-color: #e45454; /* Color de fondo */
+    color: white; /* Color del texto */
+    padding: 10px 20px; /* Espaciado interno */
+    border: none; /* Sin borde */
+    border-radius: 20px; /* Bordes redondos */
+    cursor: pointer; /* Cambio de cursor al pasar el ratón */
+    transition: background-color 0.3s ease; /* Transición suave para el color de fondo */
+    margin-top: 20px;
+}
+
+.login-button:hover {
+    /* Estilos al pasar el ratón por encima */
+    background-color: #c93a30; /* Color de fondo más oscuro */
+}
+.register-link {
+    margin-top: 25px;
+    font-family: 'Roboto', sans-serif;
+    /* Otros estilos según sea necesario */
+}
+.register-link a {
+    color: white; /* Cambia el color del hipervínculo a rojo (#ff0000) */
+  }
+  
+.exit-button {
+    background-color: red; /* Fondo verde */
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  
+  .exit-icon {
+    color: white;
+    font-size: 24px;
+  }
+  
