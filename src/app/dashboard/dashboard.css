@@ -4,50 +4,72 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
-    font-size: 1.5rem; /* Tamaño de fuente más grande */
+    font-size: 1.5rem;
     background-image: url("../../../public/images/home_screen_dentro_app.png");
-    background-position: center -80px; /* Mueve la imagen hacia abajo 50px desde el centro */
-}
-  
-  .tasks-container h2 {
-    font-size: 2rem; /* Título más grande */
-    margin-bottom: 20px; /* Espacio inferior */
+    background-position: center -80px;
+    position: relative; /* Añade posición relativa para usar posición absoluta en los botones */
   }
   
-  .tasks-container p {
-    margin-bottom: 20px; /* Espacio inferior */
-  }
-  
-  .tasks-container button {
-    padding: 10px 20px;
-    font-size: 1.2rem; /* Tamaño de fuente más grande para los botones */
-    background-color: #4CAF50; /* Color de fondo */
-    color: white; /* Color de texto */
-    border: none; /* Sin borde */
-    border-radius: 5px; /* Bordes redondeados */
-    cursor: pointer;
-    transition: background-color 0.3s ease; /* Transición suave */
-    margin-top: 15px;
-  }
-  
-  .tasks-container button:hover {
-    background-color: #45a049; /* Color de fondo al pasar el mouse */
-  }
-  
-  
-.exit-button {
-    background-color: red; /* Fondo verde */
+  .exit-button {
+    background-color: red;
     border: none;
     cursor: pointer;
     padding: 5px;
     border-radius: 5px;
-    position: absolute;
-    top: 10px;
-    right: 10px;
+    position: absolute; /* Usa posición absoluta */
+    top: 10px; /* Ajusta la posición desde la parte superior */
+    left: 10px; /* Ajusta la posición desde la izquierda */
   }
   
   .exit-icon {
     color: white;
     font-size: 24px;
+  }
+  
+  .new-task-button {
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    position: absolute; /* Usa posición absoluta */
+    top: 10px; /* Ajusta la posición desde la parte superior */
+    left: 10px; /* Ajusta la posición desde la izquierda */
+  }
+  
+  .signout-button {
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    position: absolute; /* Usa posición absoluta */
+    top: 10px; /* Ajusta la posición desde la parte superior */
+    left: 160px; /* Ajusta la posición desde la izquierda */
+  }
+  
+  .task-card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px; /* Añade un margen inferior entre cada tarea */
+    font-family: Arial, sans-serif; /* Cambia el tipo de fuente */
+    color: #333; /* Cambia el color del texto */
+  }
+  
+  .task-card h3 {
+    margin-top: 0; /* Elimina el margen superior de los títulos */
+    font-size: 1.2rem; /* Tamaño de fuente para el título */
+  }
+  
+  .task-card p {
+    margin-bottom: 5px; /* Espacio inferior entre párrafos */
+    font-size: 1rem; /* Tamaño de fuente para el contenido */
   }
   
