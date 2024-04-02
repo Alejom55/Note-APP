@@ -72,7 +72,7 @@ function CreateTaskForm() {
                         onChange={(e) => setDescription(e.target.value)}
                     />
                 </div>
-                <button type="submit">Crear tarea</button>
+                <button type="submit">{!params.id ? 'Crear tarea' : 'Actualizar tarea'}</button>
             </form>
         </div>
     );
