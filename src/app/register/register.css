@@ -9,27 +9,43 @@
 }
 
 .input-wrapper {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: #f7f7f7;
     padding: 20px;
     border-radius: 10px;
     text-align: center;
+    
+}
+.input-group input:focus:not(:placeholder-shown) {
+    border-bottom: 2px solid blue; /* Borde azul cuando el input está enfocado y tiene contenido */
 }
 
+
+.input-group input::placeholder {
+    color: #000000; /* Color deseado para el placeholder */
+}
 .input-wrapper h1 {
     margin-bottom: 20px;
     font-family: 'Roboto', sans-serif;
     font-size: 42px;
     font-weight: bold;
     color: #252797;
-    background: linear-gradient(45deg, #FF8C00, #FF0080);
+    background: linear-gradient(45deg, #000000, #141312);
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: mountain 10s infinite alternate;
 }
+.input-wrapper h2 {
+    margin-bottom: 20px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 42px;
+    font-weight: bold;
+    background: linear-gradient(45deg, #080808, #0a0a0a);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;}
 
 .input-wrapper input {
-    background-color: #ffffff; /* Color blanco */
-    border: none;
+    background-color: #e6e6e6; 
+    color: black    ;
+    border: green;
     border-radius: 10px;
     margin: 10px;
     padding: 10px;
@@ -41,22 +57,23 @@
 }
 
 .clipboard-icon {
-    color: white;
+    color: #00640d;    
     margin-top: 10px;
-    font-size: 120px;
+    font-size: 50px;
 }
 
 .input-wrapper button {
-    background-image: linear-gradient(to right, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8b00ff);
-    color: rgb(248, 245, 245);
+    background-color: #00640d;
+    color: rgb(255, 255, 255);
     padding: 10px 20px;
-    border: none;
+    border: black;
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.2s;
     background-size: 600%;
     animation: gradient 10s infinite;
+    margin-top: 20px;
 }
 
 @keyframes gradient {
@@ -67,3 +84,35 @@
         background-position: 100%;
     }
 }
+.eye-button {
+    background: none !important;
+    border: none;
+    cursor: pointer;
+    color: rgb(0, 0, 0) !important;
+    margin-left: -55px;
+    font-size: 20px;
+}
+.input-group input:not(:placeholder-shown)::placeholder {
+    color: transparent; /* Oculta el texto del placeholder cuando el input no está vacío */
+}
+
+.input-group input::placeholder {
+    color: #666666; /* Color del placeholder */
+}
+
+.exit-button {
+    background-color: #00640d; /* Fondo verde */
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  
+  .exit-icon {
+    color: white;
+    font-size: 24px;
+  }
+  
