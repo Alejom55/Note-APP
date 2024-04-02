@@ -1,8 +1,8 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useParams } from 'next/navigation';
 
 function CreateTaskForm() {
     const [title, setTitle] = useState('');
@@ -10,7 +10,11 @@ function CreateTaskForm() {
     const [error, setError] = useState(null);
     const { data: session, status } = useSession();
     const router = useRouter();
-    // console.log(session, status)
+    const params = useParams();
+
+
+
+
     const autenticado = () => {
         if (status === "authenticated" && session) {
             const { user } = session;
@@ -20,21 +24,39 @@ function CreateTaskForm() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post(`/api/tasks/${autenticado()._id}`, {
+            await axios.post(`/api/tasks/${autenticado()._id}`, {
                 title,
                 description
             });
             router.push('/dashboard');
-            // console.log(response.data);
         } catch (error) {
             setError(error.response?.data?.message || 'Algo salio mal, intenta de nuevo.');
         }
     };
+    const handleDelete = async () => {
+        try {
+            await axios.delete(`/api/tasks/${autenticado()._id}/${params.id}`, {
+                title,
+                description
+            });
+            router.push('/dashboard');
+        } catch (error) {
+            setError(error.response?.data?.message || 'Algo salio mal, intenta de nuevo.');
+        }
+    }
+
+    useEffect(() => {
+        console.log(params);
+    });
 
     return (
         <div>
             {error && <p style={{ color: 'red' }}>{error}</p>}
-            <h2>Create Task</h2>
+            <header>
+
+            </header>
+            <h2>{!params.id ? 'Crear nueva tarea' : 'Editar tarea'}</h2>
+            <button onClick={handleDelete}>Borrar</button>
             <form onSubmit={handleSubmit}>
                 <div>
                     <label>Titulo:</label>

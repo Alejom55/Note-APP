@@ -1,9 +1,13 @@
+import Link from "next/link";
+
 function TaskCard({ task }) {
     return (
-        <div className="task-container">
-            <h3>{task.title}</h3>
-            <p>{task.description}</p>
-        </div>
+        <Link href={`/dashboard/${task._id}`}>
+            <div className="task-container">
+                <h3>{task.title}</h3>
+                <p>{task.description}</p>
+            </div>
+        </Link>
     );
 }
 
