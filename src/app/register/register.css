@@ -6,6 +6,9 @@
     align-items: center;
     height: 100vh;
     text-align: center;
+    background-size: cover   ;
+    background-position: left;
+
 }
 
 .input-wrapper {
@@ -13,16 +16,20 @@
     padding: 20px;
     border-radius: 10px;
     text-align: center;
-    
+
 }
+
 .input-group input:focus:not(:placeholder-shown) {
-    border-bottom: 2px solid blue; /* Borde azul cuando el input está enfocado y tiene contenido */
+    border-bottom: 2px solid blue;
+    /* Borde azul cuando el input está enfocado y tiene contenido */
 }
 
 
 .input-group input::placeholder {
-    color: #000000; /* Color deseado para el placeholder */
+    color: #000000;
+    /* Color deseado para el placeholder */
 }
+
 .input-wrapper h1 {
     margin-bottom: 20px;
     font-family: 'Roboto', sans-serif;
@@ -33,6 +40,7 @@
     background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+
 .input-wrapper h2 {
     margin-bottom: 20px;
     font-family: 'Roboto', sans-serif;
@@ -40,11 +48,12 @@
     font-weight: bold;
     background: linear-gradient(45deg, #080808, #0a0a0a);
     background-clip: text;
-    -webkit-text-fill-color: transparent;}
+    -webkit-text-fill-color: transparent;
+}
 
 .input-wrapper input {
-    background-color: #e6e6e6; 
-    color: black    ;
+    background-color: #e6e6e6;
+    color: black;
     border: green;
     border-radius: 10px;
     margin: 10px;
@@ -57,7 +66,7 @@
 }
 
 .clipboard-icon {
-    color: #00640d;    
+    color: #00640d;
     margin-top: 10px;
     font-size: 50px;
 }
@@ -73,6 +82,10 @@
     transition: background-color 0.2s;
     background-size: 600%;
     animation: gradient 10s infinite;
+    /* margin-top: 20px; */
+}
+
+.register-button {
     margin-top: 20px;
 }
 
@@ -80,28 +93,50 @@
     0% {
         background-position: 0%;
     }
+
     100% {
         background-position: 100%;
     }
 }
+
 .eye-button {
+    /* display: flex; */
     background: none !important;
     border: none;
     cursor: pointer;
     color: rgb(0, 0, 0) !important;
     margin-left: -55px;
     font-size: 20px;
+    /* align-items: center; */
+    /* min-height: max-content; */
+    /* height: 55px; */
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-self: center; */
+    /* align-items: center; */
+
 }
+
+.eye {
+    /* display: flex; */
+    justify-content: center;
+    align-self: center;
+    align-items: center;
+}
+
 .input-group input:not(:placeholder-shown)::placeholder {
-    color: transparent; /* Oculta el texto del placeholder cuando el input no está vacío */
+    color: transparent;
+    /* Oculta el texto del placeholder cuando el input no está vacío */
 }
 
 .input-group input::placeholder {
-    color: #666666; /* Color del placeholder */
+    color: #666666;
+    /* Color del placeholder */
 }
 
 .exit-button {
-    background-color: #00640d; /* Fondo verde */
+    display: flex;
+    background-color: #00640d;
     border: none;
     cursor: pointer;
     padding: 5px;
@@ -109,10 +144,12 @@
     position: absolute;
     top: 10px;
     right: 10px;
-  }
-  
-  .exit-icon {
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+}
+
+.exit-icon {
     color: white;
     font-size: 24px;
-  }
-  
+}

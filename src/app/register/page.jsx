@@ -30,96 +30,96 @@ function SignUp() {
   const router = useRouter();
 
   const handleSubmit = async (e) => {
-      e.preventDefault();
-      const formData = new FormData(e.currentTarget);
-      const password = formData.get('password');
-      const confirmPassword = formData.get('confirmPassword');
-  
-      if (password !== confirmPassword) {
-          setError('Las contraseñas no coinciden');
-          return;
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const password = formData.get('password');
+    const confirmPassword = formData.get('confirmPassword');
+
+    if (password !== confirmPassword) {
+      setError('Las contraseñas no coinciden');
+      return;
+    }
+
+    try {
+      const res = await axios.post('/api/auth/signup', {
+        email: formData.get('email'),
+        password: formData.get('password'),
+        fullname: formData.get('fullname')
+      });
+
+      const restSignIn = await signIn('credentials', {
+        email: res.data.email,
+        password: formData.get('password'),
+        redirect: false,
+      });
+
+      if (restSignIn.ok) {
+        setRegistrationSuccess(true); // Establecer el estado de éxito del registro a true
+        setTimeout(() => {
+          router.push('/login'); // Redireccionar a la página de inicio de sesión después de 3 segundos
+        }, 3000);
       }
-  
-      try {
-          const res = await axios.post('/api/auth/signup', {
-              email: formData.get('email'),
-              password: formData.get('password'),
-              fullname: formData.get('fullname')
-          });
-  
-          const restSignIn = await signIn('credentials', {
-              email: res.data.email,
-              password: formData.get('password'),
-              redirect: false,
-          });
-  
-          if (restSignIn.ok) {
-              setRegistrationSuccess(true); // Establecer el estado de éxito del registro a true
-              setTimeout(() => {
-                  router.push('/login'); // Redireccionar a la página de inicio de sesión después de 3 segundos
-              }, 3000);
-          }
-      } catch (error) {
-          console.log(error);
-          if (error instanceof AxiosError) {
-              setError(error.response?.data.message);
-          }
+    } catch (error) {
+      console.log(error);
+      if (error instanceof AxiosError) {
+        setError(error.response?.data.message);
       }
+    }
   };
 
   return (
-      <div className="register-container">
-          {error && <p style={{ color: 'red' }}>{error}</p>}
-          {registrationSuccess && (
-              <p style={{ color: 'green' }}>¡Registro exitoso! Serás redireccionado a la página de inicio de sesión.</p>
-          )}
-          <ExitButton />
-          <div className="input-wrapper">
-              <h1>Registrate en nuestro</h1>
-              <h2>gestor de notas</h2>
-              <FaClipboardList className="clipboard-icon" />
-              <form onSubmit={handleSubmit}>
-                  <div className="input-group">
-                      <input
-                          type="text"
-                          name="fullname"
-                          placeholder='Nombre completo'
-                          required
-                      />
-                  </div>
-                  <div className="input-group">
-                      <input
-                          type="email"
-                          name="email"
-                          placeholder='Correo electrónico'
-                          required
-                      />
-                  </div>
-                  <div className="input-group">
-                      <input
-                          type={showPassword ? 'text' : 'password'}
-                          id="password"
-                          name="password"
-                          placeholder='Contraseña'
-                          required
-                      />
-                      <button type="button" className="eye-button" onClick={() => setShowPassword(!showPassword)}>
-                          {showPassword ? <FaEyeSlash /> : <FaEye />}
-                      </button>
-                  </div>
-                  <div className="input-group">
-                      <input
-                          type={showPassword ? 'text' : 'password'}
-                          id="confirmPassword"
-                          name="confirmPassword"
-                          placeholder='Confirmar Contraseña'
-                          required
-                      />
-                  </div>
-                  <button type="submit">Registrarse</button>
-              </form>
+    <div className="register-container">
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {registrationSuccess && (
+        <p style={{ color: 'green' }}>¡Registro exitoso! Serás redireccionado a la página de inicio de sesión.</p>
+      )}
+      <ExitButton />
+      <div className="input-wrapper">
+        <h1>Registrate en nuestro</h1>
+        <h2>gestor de notas</h2>
+        <FaClipboardList className="clipboard-icon" />
+        <form onSubmit={handleSubmit}>
+          <div className="input-group">
+            <input
+              type="text"
+              name="fullname"
+              placeholder='Nombre completo'
+              required
+            />
           </div>
+          <div className="input-group">
+            <input
+              type="email"
+              name="email"
+              placeholder='Correo electrónico'
+              required
+            />
+          </div>
+          <div className="input-group">
+            <input
+              type={showPassword ? 'text' : 'password'}
+              id="password"
+              name="password"
+              placeholder='Contraseña'
+              required
+            />
+            <button type="button" className="eye-button" onClick={() => setShowPassword(!showPassword)}>
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </button>
+          </div>
+          <div className="input-group">
+            <input
+              type={showPassword ? 'text' : 'password'}
+              id="confirmPassword"
+              name="confirmPassword"
+              placeholder='Confirmar Contraseña'
+              required
+            />
+          </div>
+          <button type="submit">Registrarse</button>
+        </form>
       </div>
+    </div>
   );
 }
 
