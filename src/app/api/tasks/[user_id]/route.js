@@ -6,13 +6,10 @@ export async function POST(req, { params }) {
     await connectDB();
     try {
         const { title, description } = await req.json();
-
-        // Buscar el usuario por su ID
-        const user = await User.findById(params.id);
+        const user = await User.findById(params.user_id);
         if (!user) {
             return NextResponse.json({ message: 'User not found' }, { status: 404 });
         }
-        // Crear una nueva tarea y agregarla a la lista de notas del usuario
         const newTask = { title, description };
         user.notes.push(newTask);
         await user.save();
@@ -25,7 +22,7 @@ export async function POST(req, { params }) {
 export async function GET(req, { params }) {
     await connectDB();
     try {
-        const user = await User.findById(params.id);
+        const user = await User.findById(params.user_id);
         if (!user) {
             return NextResponse.json({ message: 'User not found' }, { status: 404 });
         }
@@ -35,4 +32,7 @@ export async function GET(req, { params }) {
         return NextResponse.json({ message: 'Internal server error' }, { status: 500 });
     }
 }
+
+
+
 

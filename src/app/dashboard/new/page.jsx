@@ -1,14 +1,20 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useSession } from 'next-auth/react';
+import { useRouter, useParams } from 'next/navigation';
 
 function CreateTaskForm() {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [error, setError] = useState(null);
     const { data: session, status } = useSession();
-    console.log(session, status)
+    const router = useRouter();
+    const params = useParams();
+
+
+
+
     const autenticado = () => {
         if (status === "authenticated" && session) {
             const { user } = session;
@@ -18,24 +24,40 @@ function CreateTaskForm() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post(`/api/tasks/${autenticado()._id}`, {
+            await axios.post(`/api/tasks/${autenticado()._id}`, {
                 title,
                 description
             });
-            console.log(response.data); // Maneja la respuesta según sea necesario
-            // Aquí podrías actualizar el estado de tu aplicación o redirigir a otra página, por ejemplo
+            router.push('/dashboard');
         } catch (error) {
-            setError(error.response?.data?.message || 'Something went wrong');
+            setError(error.response?.data?.message || 'Algo salio mal, intenta de nuevo.');
         }
     };
+    const handleDelete = async () => {
+        try {
+            await axios.delete(`/api/tasks/${autenticado()._id}/${params.id}`);
+            router.push('/dashboard');
+        } catch (error) {
+            setError(error.response?.data?.message || 'Algo salio mal, intenta de nuevo.');
+        }
+    }
+
+    useEffect(() => {
+        console.log(params);
+    });
 
     return (
         <div>
             {error && <p style={{ color: 'red' }}>{error}</p>}
-            <h2>Create Task</h2>
+            <header>
+
+            </header>
+            <h2>{!params.id ? 'Crear nueva tarea' : 'Editar tarea'}</h2>
+            {!params.id ? null : <button onClick={handleDelete}>Eliminar tarea</button>}
+
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label>Title:</label>
+                    <label>Titulo:</label>
                     <input
                         type="text"
                         value={title}
@@ -44,13 +66,13 @@ function CreateTaskForm() {
                     />
                 </div>
                 <div>
-                    <label>Description:</label>
+                    <label>Descripcion:</label>
                     <textarea
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
                     />
                 </div>
-                <button type="submit">Create Task</button>
+                <button type="submit">Crear tarea</button>
             </form>
         </div>
     );

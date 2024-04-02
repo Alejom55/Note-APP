@@ -4,7 +4,7 @@ const noteSchema = new Schema({
     title: {
       type: String,
       trim: true,
-      required: true
+      required: [true, "can't be blank"],
     },
     description: {
       type: String,
