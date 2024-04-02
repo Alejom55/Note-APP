@@ -6,8 +6,8 @@
     align-items: center;
     height: 100vh;
     text-align: center;
-    background-size: cover;
-    /* background-position: left; */
+    background-size: cover   ;
+    background-position: left;
 
 }
 
@@ -101,7 +101,7 @@
 
 .eye-button {
     /* display: flex; */
-background: none !important;
+    background: none !important;
     border: none;
     cursor: pointer;
     color: rgb(0, 0, 0) !important;
