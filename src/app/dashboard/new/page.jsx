@@ -35,10 +35,7 @@ function CreateTaskForm() {
     };
     const handleDelete = async () => {
         try {
-            await axios.delete(`/api/tasks/${autenticado()._id}/${params.id}`, {
-                title,
-                description
-            });
+            await axios.delete(`/api/tasks/${autenticado()._id}/${params.id}`);
             router.push('/dashboard');
         } catch (error) {
             setError(error.response?.data?.message || 'Algo salio mal, intenta de nuevo.');
@@ -56,7 +53,8 @@ function CreateTaskForm() {
 
             </header>
             <h2>{!params.id ? 'Crear nueva tarea' : 'Editar tarea'}</h2>
-            <button onClick={handleDelete}>Borrar</button>
+            {!params.id ? null : <button onClick={handleDelete}>Eliminar tarea</button>}
+
             <form onSubmit={handleSubmit}>
                 <div>
                     <label>Titulo:</label>
