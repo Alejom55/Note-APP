@@ -49,44 +49,43 @@ function CreateTaskForm() {
 
     return (
         <div className="create-task-container">
-        {error && <p className="error-message">{error}</p>}
-        {successMessage && (
-            <div>
-                <p className="success-message">{successMessage}</p>
-                <div className="buttons-container">
-                    <button onClick={() => setSuccessMessage('')} className="submit-button">Crear otra tarea</button>
-                    <button onClick={() => router.push('/dashboard')} className="submit-button">Regresar al dashboard</button>
+            {error && <p className="error-message">{error}</p>}
+            {successMessage && (
+                <div>
+                    <p className="success-message">{successMessage}</p>
+                    <div className="buttons-container">
+                        <button onClick={() => setSuccessMessage('')} className="submit-button">Crear otra tarea</button>
+                        <button onClick={() => router.push('/dashboard')} className="submit-button">Regresar al dashboard</button>
+                    </div>
                 </div>
-            </div>
-        )}
-        <header>
-            <h1>{!params.id ? 'Crear nueva tarea' : 'Editar tarea'}</h1>
-        </header>
-        {!params.id ? null : <button onClick={handleDelete} className="delete-button">Eliminar tarea</button>}
+            )}
+            <header>
+                <h1>{!params.id ? 'Crear nueva tarea' : 'Editar tarea'}</h1>
+            </header>
+            {!params.id ? null : <button onClick={handleDelete} className="delete-button">Eliminar tarea</button>}
 
-        <form onSubmit={handleSubmit} className="task-form">
-            <div className="form-group">
-                <label htmlFor="title">Titulo:</label>
-                <input
-                    type="text"
-                    id="title"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                    required
-                />
-            </div>
-            <div className="form-group">
-                <label htmlFor="description">Descripción:</label>
-                <textarea
-                    id="description"
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                />
-            </div>
-            <button type="submit" className="submit-button">Crear tarea</button>
-        </form>
-    </div>
-
+            <form onSubmit={handleSubmit} className="task-form">
+                <div className="form-group">
+                    <label htmlFor="title">Titulo:</label>
+                    <input
+                        type="text"
+                        id="title"
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                        required
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="description">Descripción:</label>
+                    <textarea
+                        id="description"
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                    />
+                </div>
+                <button type="submit" className="submit-button">Crear tarea</button>
+            </form>
+        </div>
     );
 }
 

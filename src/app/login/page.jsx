@@ -9,7 +9,6 @@
   import { IoExitOutline } from "react-icons/io5";
   import './login.css';
   
-  
   function LogInPage() {
     const [error, setError] = useState();
     const [showPassword, setShowPassword] = useState(false);
@@ -34,38 +33,42 @@
     };
   
     return (
-      <div className="login-container">
-        <button className="exit-button" onClick={handleExit}>
-          <IoExitOutline className="exit-icon" />
-        </button>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-        <h1>Iniciar Sesión</h1>
-        <form onSubmit={handleSubmit}>
-          <div className="input-group">
-            <CiMail className="icon" />
-            <input
-              type="email"
-              name="email"
-              placeholder='Correo electrónico'
-              required
-            />
-          </div>
-          <div className="input-group">
-            <RiLockPasswordLine className="icon" />
-            <input
-              type={showPassword ? 'text' : 'password'}
-              id="password"
-              name="password"
-              placeholder='Contraseña'
-              required
-            />
-            <button type="button" className="eye-button" onClick={() => setShowPassword(!showPassword)}>
-              {showPassword ? <FaEyeSlash /> : <FaEye />}
+      <div className="background-container">
+        <div className="container">
+          <div className="login-container">
+            <button className="exit-button" onClick={handleExit}>
+              <IoExitOutline className="exit-icon" />
             </button>
+            {error && <p style={{ color: 'red' }}>{error}</p>}
+            <h1>Iniciar Sesión</h1>
+            <form onSubmit={handleSubmit}>
+              <div className="input-group">
+                <CiMail className="icon" />
+                <input
+                  type="email"
+                  name="email"
+                  placeholder='Correo electrónico'
+                  required
+                />
+              </div>
+              <div className="input-group">
+                <RiLockPasswordLine className="icon" />
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  id="password"
+                  name="password"
+                  placeholder='Contraseña'
+                  required
+                />
+                <button type="button" className="eye-button" onClick={() => setShowPassword(!showPassword)}>
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+                </button>
+              </div>
+              <button type="submit" className="login-button">Ingresar</button>
+            </form>
+            <p className="register-link">No tienes cuenta? <a href="/register ">Regístrate aquí</a></p>
           </div>
-          <button type="submit" className="login-button">Iniciar Sesión</button>
-        </form>
-        <p className="register-link">No tienes cuenta? <a href="/register ">Regístrate aquí</a></p>
+        </div>
       </div>
     );
   }

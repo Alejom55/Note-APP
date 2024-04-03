@@ -33,9 +33,36 @@
 .link {
     margin-right: 20px; 
     text-decoration: none;
+    color: #4CAF50
     }
 
+.ADDIcon{
+    margin-top: 5px;
+    margin-right: 30px;
 
+    font-size: 25px;
+    color: #4CAF50;
+}
 
+.joinicon{
+    margin-top: 5px;
+    margin-left: -15px;
+    font-size: 25px;
+    color: #4CAF50;
+}
+.linkregister{
 
+    position: flex;
+    margin-left: 15px;
+    color: #4CAF50;
+}
 
+.titulopagina {
+    font-size: 30px; /* Aumenta el tamaño de la fuente del título */
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    height: calc(100vh - 80px); /* Ajusta la altura para dejar espacio para los botones */
+    position: relative;
+    top: -10px; /* Reduzca el desplazamiento hacia arriba */
+}

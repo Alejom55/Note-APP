@@ -1,22 +1,25 @@
-
-.login-container {
+.background-container {
+    background-image: url("../../../public/images/imagen_login.jpg");
     background-size: cover;
     background-position: center;
     width: 100vw;
-    background-image: url("../../../public/images/imagen_login.png");
-    background-position: center 0.5px; /* Mueve la imagen hacia abajo 50px desde el centro */
+    height: 100vh;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+}
+  
+
+
+.login-container {
+    max-width: 500px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.8); /* Agregar opacidad al fondo */
     text-align: center;
-}
-.login-container h1{
-    font-size: 36px; /* Tamaño de fuente más grande */
-    color: #333; /* Color del texto */
-    margin-bottom: 25px;
-}
+  }
 .input-group {
     display: flex;
     align-items: center;
@@ -30,7 +33,10 @@
     border-radius: 5px;
     border: 1px solid #ccc;
 }
-
+.container h1{
+    color: #00640d;
+    margin-bottom: 20px;
+}
 .input-group button {
     background: none;
     border: none;
@@ -38,7 +44,7 @@
 }
 .login-button {
     /* Estilos para el botón de inicio de sesión */
-    background-color: #e45454; /* Color de fondo */
+    background-color: #00640d;; /* Color de fondo */
     color: white; /* Color del texto */
     padding: 10px 20px; /* Espaciado interno */
     border: none; /* Sin borde */
@@ -50,7 +56,7 @@
 
 .login-button:hover {
     /* Estilos al pasar el ratón por encima */
-    background-color: #c93a30; /* Color de fondo más oscuro */
+    background-color: #10861f; /* Color de fondo más oscuro */
 }
 .register-link {
     margin-top: 25px;
@@ -58,11 +64,11 @@
     /* Otros estilos según sea necesario */
 }
 .register-link a {
-    color: white; /* Cambia el color del hipervínculo a rojo (#ff0000) */
+    color: #00640d; /* Cambia el color del hipervínculo a rojo (#ff0000) */
   }
   
 .exit-button {
-    background-color: red; /* Fondo verde */
+    background-color: #00640d;; /* Fondo verde */
     border: none;
     cursor: pointer;
     padding: 5px;
@@ -76,4 +82,11 @@
     color: white;
     font-size: 24px;
   }
-  
+.icon{
+    color: #00640d;
+    font-size: 30px;
+}
+.eye-button{
+    color: #00640d;
+    font-size: 15px;
+}

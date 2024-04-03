@@ -1,15 +1,12 @@
-'use client'
+"use client"
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useSession, signOut } from 'next-auth/react';
-import TaskCard from '@/components/taskCard';
 import Link from 'next/link';
 import './dashboard.css';
-import { IoExitOutline } from "react-icons/io5";
+import { FaRegTrashAlt } from "react-icons/fa";
 
-const handleExit = () => {
-  router.push("/");
-};
+
 
 function TasksPage() {
   const [userId, setUserId] = useState('');
@@ -17,6 +14,7 @@ function TasksPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const { data: session, status } = useSession();
+  const [containerHeight, setContainerHeight] = useState('auto');
 
   const autenticado = () => {
     if (status === "authenticated" && session) {
@@ -31,12 +29,27 @@ function TasksPage() {
       const response = await axios.get(`/api/tasks/${userId}`);
       setTasks(response.data.data.notes);
       setError('');
+      // Restaurar la altura del contenedor a "auto" para evitar que se desplace hacia arriba
+      setContainerHeight('auto');
     } catch (error) {
       console.error('Error retrieving user tasks:', error);
       setError('Error retrieving user tasks. Please try again later.');
     }
     setLoading(false);
   };
+
+  const handleDeleteTask = async (taskId) => {
+    try {
+      await axios.delete(`/api/tasks/${userId}/${taskId}`);
+      setTasks(tasks.filter(task => task._id !== taskId));
+      // Establecer una altura mínima para evitar que el contenedor se colapse
+      const minHeight = Math.max(200, tasks.length * 100); // Ajustar el valor mínimo según tus necesidades
+      setContainerHeight(minHeight + 'px');
+    } catch (error) {
+      console.error('Error deleting task:', error);
+    }
+  };
+
 
   useEffect(() => {
     if (userId) {
@@ -51,30 +64,46 @@ function TasksPage() {
   }, [status]);
 
   return (
-    <div className="tasks-container">
-      <button className="exit-button" onClick={handleExit}>
-        <IoExitOutline className="exit-icon" />
-      </button>
+    <div className="tasks-container" style={{ minHeight: containerHeight }}>
       {loading && <p>Loading...</p>}
       {tasks.length === 0 && !loading && !error && (
-        <p>No tasks found for the user.</p>
+        <p className="notask">No tasks found for the user.</p>
       )}
-      {error && <p>{error}</p>}
+      {error && <p>{error}</p>} 
       {tasks.length > 0 && (
         <>
-          <h2>Tareas del usuario</h2>
-          <div className="task-grid">
-            {tasks.map(task => (
-              <div key={task._id} className="task-card">
-                <TaskCard task={task} />
+          <div className="task-container">
+            <div className="task-header">
+              <span className="tasks-title">Lista de tareas</span>
+              <Link href="/dashboard/new">
+                <button className="new-task-button">Nueva tarea</button>
+              </Link>
+            </div>
+            <div className="task-grid">
+              {tasks.map(task => (  
+                <div key={task._id} className="task-card">
+                <div className="task-content">
+                  <h3>{task.title}</h3>
+                  <p>{task.description}</p>
+                </div>
+                <button className="boton-trash" onClick={() => handleDeleteTask(task._id)}>
+                  <FaRegTrashAlt className="trash-icon" />
+                </button>
               </div>
-            ))}
+
+              ))}
+            </div>
           </div>
         </>
       )}
-      <Link href="/dashboard/new">
-        <button className="new-task-button">Nueva tarea</button>
-      </Link>
+      {tasks.length === 0 && (
+        <div className="no-tasks-container">
+          <Link href="/dashboard/new">
+            <button className="new-task-button">Nueva tarea</button>
+          </Link>
+        </div>
+      )}
+
       <button onClick={signOut} className="signout-button">
         Cerrar sesión
       </button>

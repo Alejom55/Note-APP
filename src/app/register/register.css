@@ -136,7 +136,7 @@
 
 .exit-button {
     display: flex;
-    background-color: #00640d;
+    background-color: hsl(128, 100%, 20%);
     border: none;
     cursor: pointer;
     padding: 5px;

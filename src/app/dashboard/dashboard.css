@@ -1,75 +1,109 @@
+/* dashboard.css */
 .tasks-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    font-size: 1.5rem;
-    background-image: url("../../../public/images/home_screen_dentro_app.png");
-    background-position: center -80px;
-    position: relative; /* Añade posición relativa para usar posición absoluta en los botones */
-  }
-  
-  .exit-button {
-    background-color: red;
-    border: none;
-    cursor: pointer;
-    padding: 5px;
-    border-radius: 5px;
-    position: absolute; /* Usa posición absoluta */
-    top: 10px; /* Ajusta la posición desde la parte superior */
-    left: 10px; /* Ajusta la posición desde la izquierda */
-  }
-  
-  .exit-icon {
-    color: white;
-    font-size: 24px;
-  }
-  
-  .new-task-button {
-    padding: 10px 20px;
-    font-size: 1.2rem;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    position: absolute; /* Usa posición absoluta */
-    top: 10px; /* Ajusta la posición desde la parte superior */
-    left: 10px; /* Ajusta la posición desde la izquierda */
-  }
-  
-  .signout-button {
-    padding: 10px 20px;
-    font-size: 1.2rem;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    position: absolute; /* Usa posición absoluta */
-    top: 10px; /* Ajusta la posición desde la parte superior */
-    left: 160px; /* Ajusta la posición desde la izquierda */
-  }
-  
-  .task-card {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 10px; /* Añade un margen inferior entre cada tarea */
-    font-family: Arial, sans-serif; /* Cambia el tipo de fuente */
-    color: #333; /* Cambia el color del texto */
-  }
-  
-  .task-card h3 {
-    margin-top: 0; /* Elimina el margen superior de los títulos */
-    font-size: 1.2rem; /* Tamaño de fuente para el título */
-  }
-  
-  .task-card p {
-    margin-bottom: 5px; /* Espacio inferior entre párrafos */
-    font-size: 1rem; /* Tamaño de fuente para el contenido */
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-bottom: 300px; /* Agrega un espacio en la parte inferior del contenedor principal */
+  height: 100vh;
+  min-height: 150vh; /* Altura mínima del contenedor para que ocupe toda la altura de la pantalla */
+  font-size: 1.5rem;
+  background-image: url("../../../public/images/home_screen_dentro_app.png");
+  background-position: center -80px;
+  position: relative; /* Añade posición relativa para usar posición absoluta en los botones */
+}
+
+.signout-button {
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  position: absolute; /* Usa posición absoluta */
+  top: 10px; /* Ajusta la posición desde la parte superior */
+  background-color: #4CAF50;
+  left: 10px; /* Ajusta la posición desde la izquierda */
+}
+
+
+.task-container {
+  width: 500px;
+  max-width: 80%;
+  transition: height 0.5s ease;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  margin-bottom: 20px; /* Espacio entre las tarjetas de tarea */
+}
+
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px; /* Espacio inferior entre el encabezado y la tarea */
+}
+
+.task-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Distribución automática de las tarjetas */
+  gap: 20px; /* Espacio entre las tarjetas */
+}
+
+.task-card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  font-family: Arial, sans-serif; /* Cambia el tipo de fuente */
+  color: #333; /* Cambia el color del texto */
+}
+
+.task-card h3 {
+  margin-top: 0; /* Elimina el margen superior de los títulos */
+  font-size: 1.2rem; /* Tamaño de fuente para el título */
+}
+
+.tasks-title {
+  font-size: 1.5rem; /* Tamaño de fuente */
+  color: #4CAF50; /* Color verde */
+  margin-bottom: 20px; /* Espacio inferior para separar del resto de las tareas */
+}
+
+.task-card p {
+  margin-bottom: 5px; /* Espacio inferior entre párrafos */
+  font-size: 1rem; /* Tamaño de fuente para el contenido */
+}
+
+
+.new-task-button {
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 15px;
+
+  transition: background-color 0.3s ease;
+  top: 10px; /* Ajusta la posición desde la parte superior */
+  left: 10px; /* Ajusta la posición desde la izquierda */
+}
+
+.trash-icon {
+  font-size: 25px;
+  color: green; /* Cambiamos el color a verde */
+  border: none;
+  margin-top: -8px; /* Ajustamos el margen superior para subir el icono */
+
+}
+
+.boton-trash {
+  background-color: transparent;
+  border: none;
+  margin-left: 400px; /* Ajustamos el margen izquierdo para colocar el botón junto al texto */
+
+}
