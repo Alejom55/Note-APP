@@ -14,7 +14,7 @@ export async function GET(req, { params }) {
         if (!task) {
             return NextResponse.json({ message: 'Task not found' }, { status: 404 });
         }
-        return NextResponse.json({ user: user }, { status: 200 });
+        return NextResponse.json({ user: task }, { status: 200 });
     } catch (error) {
         console.error(error);
         return NextResponse.json({ message: 'Internal server error' }, { status: 500 });

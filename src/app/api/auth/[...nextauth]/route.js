@@ -18,7 +18,7 @@ const handler = nextAuth({
                 if (!userFound) {
                     throw new Error("Email o contraseña incorrectos");
                 }
-                console.log(userFound);
+                // console.log(userFound);
                 const passwordMatch = await bcrypt.compare(credentials?.password, userFound.password)
                 if (!passwordMatch) {
                     throw new Error("Email o contraseña incorrectos");
@@ -28,19 +28,26 @@ const handler = nextAuth({
         }),
     ],
     callbacks: {
-        jwt({ account, token, user, profile, session }) {
+        async jwt({ account, token, user, session }) {
+
             if (user) {
                 token.user = user;
             }
             return token;
         },
-        session({ session, token }) {
-            session.user = token.user;
+        async session({ session, token, user }) {
+            if (session.user) {
+                session.user = token.user;
+            }
+            // console.log(session.user)
+            // session.user.id = token.user._id;
+            // console.log(session.user)
             return session;
         }
     },
     pages: {
-        signIn: "/login",
+        signIn: "/",
+        signOut: "/",
     },
 });
 
