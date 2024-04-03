@@ -62,9 +62,7 @@
 .task-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  /* Tres columnas con el mismo ancho */
   grid-gap: 20px;
-  /* Espacio entre las tarjetas */
 }
 
 .task-card {
@@ -143,8 +141,9 @@
 .boton-trash {
   position: absolute;
   right: 5px;
+  bottom: 5px;
   background: none;
   border: none;
   cursor: pointer;
-  z-index: 1;
+  z-index: 9999;
 }

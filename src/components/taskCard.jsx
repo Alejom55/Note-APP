@@ -19,8 +19,8 @@ function TaskCard({ task, userId, onTaskDeleted }) {
                     <h3 className="task-title">{task.title.toUpperCase()}</h3>
                     <p className="task-description">{task.description}</p>
                 </div>
-                <FaRegTrashAlt className="trash-icon boton-trash" onClick={() => handleDeleteTask(task._id)} />
             </Link>
+            <FaRegTrashAlt className="trash-icon boton-trash" onClick={() => handleDeleteTask(task._id)} />
         </>
     );
 }

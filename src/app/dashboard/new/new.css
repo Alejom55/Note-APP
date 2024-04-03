@@ -7,9 +7,15 @@
     background-color: #f9f9f9;
 }
 
-body{
+body {
     background-image: url("../../../../public/images/home_screen_dentro_app.png");
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
+    height: 100vh;
+    background-size: cover;
 }
+
 .error-message {
     color: red;
 }
@@ -55,8 +61,11 @@ body{
 
 .buttons-container {
     display: flex;
-    gap: 10px; /* Añade un espacio de 10px entre los elementos */
+    gap: 10px;
+    /* Añade un espacio de 10px entre los elementos */
 }
+
 .custom-header {
-    color: #45a049; /* Cambia el color del texto del header a azul */
-  }
+    color: #45a049;
+    /* Cambia el color del texto del header a azul */
+}
