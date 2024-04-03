@@ -11,8 +11,8 @@ function CreateTaskForm() {
     const [description, setDescription] = useState('');
     const [error, setError] = useState(null);
     const [successMessage, setSuccessMessage] = useState('');
-    const [loading, setLoading] = useState(true); // Inicia en estado de carga
-    const [authenticated, setAuthenticated] = useState(false); // Nuevo estado para indicar si el usuario está autenticado
+    const [loading, setLoading] = useState(true);
+    const [authenticated, setAuthenticated] = useState(false); 
 
     const { data: session, status } = useSession();
     const router = useRouter();
@@ -27,7 +27,7 @@ function CreateTaskForm() {
                 setLoading(false);
             }
         } else {
-            router.push('/login'); // Redirigir a la página de inicio de sesión si no está autenticado
+            router.push('/login');
         }
 
     }, [status, session]);
@@ -94,7 +94,7 @@ function CreateTaskForm() {
 
         } catch (error) {
             console.log(error)
-            // setError(error.response?.data?.message || 'Algo salió mal, intenta de nuevo. uwu');
+            setError(error.response?.data?.message || 'Algo salió mal, intenta de nuevo. uwu');
         }
     };
 
@@ -136,7 +136,8 @@ function CreateTaskForm() {
                         onChange={(e) => setDescription(e.target.value)}
                     />
                 </div>
-                <button type="submit" className="submit-button">Crear tarea</button>
+              
+                <button type="submit" className="submit-button">  {!params.id ? 'Crear tarea' : 'Actualizar tarea'} </button>
             </form>
         </div>
     );
