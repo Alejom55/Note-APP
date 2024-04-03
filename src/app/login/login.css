@@ -3,7 +3,7 @@
     background-size: cover;
     background-position: center;
     width: 100vw;
-    background-image: url("../../../public/images/imagen_login.png");
+    background-image: url("../../../public/images/imagen.png");
     background-position: center 0.5px; /* Mueve la imagen hacia abajo 50px desde el centro */
     display: flex;
     flex-direction: column;

@@ -17,7 +17,6 @@ function TasksPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const { data: session, status } = useSession();
-
   const autenticado = () => {
     if (status === "authenticated" && session) {
       const { user } = session;
