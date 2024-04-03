@@ -7,7 +7,6 @@
   import { FaEye, FaEyeSlash } from 'react-icons/fa';
   import { CiMail } from "react-icons/ci";
   import { IoExitOutline } from "react-icons/io5";
-  import './login.css';
   
   function LogInPage() {
     const [error, setError] = useState();
@@ -34,7 +33,7 @@
   
     return (
       <div className="background-container">
-        <div className="container">
+        <div className="container-login">
           <div className="login-container">
             <button className="exit-button" onClick={handleExit}>
               <IoExitOutline className="exit-icon" />
@@ -60,7 +59,7 @@
                   placeholder='Contraseña'
                   required
                 />
-                <button type="button" className="eye-button" onClick={() => setShowPassword(!showPassword)}>
+                <button type="button" className="eye-button-login" onClick={() => setShowPassword(!showPassword)}>
                   {showPassword ? <FaEyeSlash /> : <FaEye />}
                 </button>
               </div>

@@ -38,7 +38,7 @@
     border: 1px solid #ccc;
 }
 
-.container h1 {
+.container-login h1 {
     color: #00640d;
     margin-bottom: 20px;
 }
@@ -109,7 +109,7 @@
     font-size: 30px;
 }
 
-.eye-button {
+.eye-button-login {
     color: #00640d;
     font-size: 15px;
 }

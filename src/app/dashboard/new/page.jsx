@@ -112,10 +112,10 @@ function CreateTaskForm() {
                     </div>
                 </div>
             )}
-            <header>
-                <h1>{!params.id ? 'Crear nueva tarea' : 'Editar tarea'}</h1>
-            </header>
-            {!params.id ? null : <button onClick={handleDelete} className="delete-button">Eliminar tarea</button>}
+                <header className="custom-header">
+                    <h1>{!params.id ? 'Crear nueva tarea' : 'Editar tarea'}</h1>
+                    </header>
+
 
             <form onSubmit={handleSubmit} className="task-form">
                 <div className="form-group">
@@ -138,6 +138,7 @@ function CreateTaskForm() {
                 </div>
               
                 <button type="submit" className="submit-button">  {!params.id ? 'Crear tarea' : 'Actualizar tarea'} </button>
+                {!params.id ? null : <button onClick={handleDelete} className="delete-button">Eliminar tarea</button>}
             </form>
         </div>
     );

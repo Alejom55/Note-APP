@@ -7,7 +7,9 @@
     background-color: #f9f9f9;
 }
 
-
+body{
+    background-image: url("../../../../public/images/home_screen_dentro_app.png");
+}
 .error-message {
     color: red;
 }
@@ -43,6 +45,7 @@
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin-left: 10px
 }
 
 .submit-button:hover,
@@ -54,4 +57,6 @@
     display: flex;
     gap: 10px; /* Añade un espacio de 10px entre los elementos */
 }
-    
+.custom-header {
+    color: #45a049; /* Cambia el color del texto del header a azul */
+  }
