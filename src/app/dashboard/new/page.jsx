@@ -9,6 +9,8 @@ import { set } from 'mongoose';
 function CreateTaskForm() {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
+    const [searchWord, setSearchWord] = useState(''); // Nuevo estado para la palabra de búsqueda
+    const [wordCount, setWordCount] = useState(0); // Estado para almacenar el número de ocurrencias
     const [error, setError] = useState(null);
     const [successMessage, setSuccessMessage] = useState('');
     const [loading, setLoading] = useState(true);
@@ -32,8 +34,6 @@ function CreateTaskForm() {
 
     }, [status, session]);
 
-
-
     const autenticado = () => {
         if (status === "authenticated" && session) {
             const { user } = session;
@@ -42,7 +42,6 @@ function CreateTaskForm() {
         }
         return null
     }
-
 
     const updateTask = async () => {
         try {
@@ -55,6 +54,7 @@ function CreateTaskForm() {
             setError(error.response?.data?.message || 'Algo salió mal, intenta de nuevo.');
         }
     };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -82,23 +82,29 @@ function CreateTaskForm() {
             setError(error.response?.data?.message || 'Algo salió mal, intenta de nuevo.');
         }
     }
+
     const fetchTask = async () => {
         try {
-
             const response = await axios.get(`/api/tasks/${autenticado()._id}/${params.id}`);
             const task = response.data.user;
             setTitle(task.title);
             setDescription(task.description);
             setLoading(false);
-
-
         } catch (error) {
-            console.log(error)
             setError(error.response?.data?.message || 'Algo salió mal, intenta de nuevo. uwu');
         }
     };
 
+    // Función para contar las ocurrencias de la palabra en la descripción
+    useEffect(() => {
+        const countOccurrences = () => {
+            const regex = new RegExp(searchWord, 'gi'); // 'gi' para coincidencias globales y sin distinción entre mayúsculas y minúsculas
+            const count = (description.match(regex) || []).length;
+            setWordCount(count);
+        };
 
+        countOccurrences();
+    }, [searchWord, description]);
 
     return (
         <div className="create-task-container">
@@ -112,10 +118,9 @@ function CreateTaskForm() {
                     </div>
                 </div>
             )}
-                <header className="custom-header">
-                    <h1>{!params.id ? 'Crear nueva tarea' : 'Editar tarea'}</h1>
-                    </header>
-
+            <header className="custom-header">
+                <h1>{!params.id ? 'Crear nueva tarea' : 'Editar tarea'}</h1>
+            </header>
 
             <form onSubmit={handleSubmit} className="task-form">
                 <div className="form-group">
@@ -136,7 +141,24 @@ function CreateTaskForm() {
                         onChange={(e) => setDescription(e.target.value)}
                     />
                 </div>
-              
+                {/* Nuevo campo de texto para ingresar la palabra de búsqueda */}
+                {params.id && (
+    <div>
+        <div className="form-group">
+            <label htmlFor="searchWord">Palabra de búsqueda:</label>
+            <input
+                type="text"
+                id="searchWord"
+                value={searchWord}
+                onChange={(e) => setSearchWord(e.target.value)}
+            />
+        </div>
+        {/* Muestra el número de ocurrencias de la palabra */}
+        <p>Número de veces que "{searchWord}" aparece en la descripción: {wordCount}</p>
+    </div>
+)}
+
+                
                 <button type="submit" className="submit-button">  {!params.id ? 'Crear tarea' : 'Actualizar tarea'} </button>
                 {!params.id ? null : <button onClick={handleDelete} className="delete-button">Eliminar tarea</button>}
             </form>
