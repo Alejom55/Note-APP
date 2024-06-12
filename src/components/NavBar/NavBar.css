@@ -1,0 +1,36 @@
+.navBar {
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    background-color: #333;
+    justify-content: space-between;
+    color: white;
+    height: 7vh;
+}
+.navBar-content{
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.navBar-content button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.signout-button {
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    background-color: #4CAF50;
+  }

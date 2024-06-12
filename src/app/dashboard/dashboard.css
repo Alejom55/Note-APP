@@ -3,7 +3,7 @@
   justify-content: center;
   align-items: center;
   background-image: url("../../../public/images/home_screen_dentro_app.png");
-  height: 100vh;
+  height: 93vh;
   background-size: cover;
 
 
@@ -13,28 +13,7 @@
   padding: 10px 50px 10px 50px;
 }
 
-.signout-button {
-  padding: 10px 20px;
-  font-size: 1.2rem;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  position: absolute;
-  top: 10px;
-  background-color: #4CAF50;
-  right: 10px;
-}
-
-
 .task-container {
-  /* display: grid; */
-  /* flex-direction: column; */
-  /* grid-column: 3; */
-  /* width: 500px; */
-  /* width: 100%; */
-  /* max-width: 80%; */
   transition: height 0.5s ease;
   margin: auto;
   padding: 20px;

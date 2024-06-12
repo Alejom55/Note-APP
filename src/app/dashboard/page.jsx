@@ -1,7 +1,7 @@
 "use client"
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useSession, signOut } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import './dashboard.css';
 import TaskCard from '@/components/taskCard';
@@ -88,9 +88,6 @@ function TasksPage() {
             </Link>
           </div>
         )}
-        <button onClick={signOut} className="signout-button">
-          Cerrar sesión
-        </button>
       </div>
     </div>
   );
