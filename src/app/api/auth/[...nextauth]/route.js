@@ -3,6 +3,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { connectDB } from "@/libs/mongodb";
 import User from "@/models/user";
 import bcrypt from "bcryptjs";
+import NextAuth from "next-auth/next";
 
 const handler = nextAuth({
     providers: [
@@ -18,7 +19,6 @@ const handler = nextAuth({
                 if (!userFound) {
                     throw new Error("Email o contraseña incorrectos");
                 }
-                // console.log(userFound);
                 const passwordMatch = await bcrypt.compare(credentials?.password, userFound.password)
                 if (!passwordMatch) {
                     throw new Error("Email o contraseña incorrectos");
@@ -39,9 +39,6 @@ const handler = nextAuth({
             if (session.user) {
                 session.user = token.user;
             }
-            // console.log(session.user)
-            // session.user.id = token.user._id;
-            // console.log(session.user)
             return session;
         }
     },
@@ -51,5 +48,5 @@ const handler = nextAuth({
     },
 });
 
-
+export const handlerAuth = NextAuth(handler);
 export { handler as GET, handler as POST }

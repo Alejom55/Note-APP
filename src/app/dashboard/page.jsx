@@ -88,7 +88,6 @@ function TasksPage() {
             </Link>
           </div>
         )}
-
         <button onClick={signOut} className="signout-button">
           Cerrar sesión
         </button>
