@@ -5,9 +5,9 @@ import { redirect } from "next/navigation";
 async function RedirectAuth() {
 
     const session = await getServerSession();
-    if (session) {
-        redirect('/dashboard');;
-    }
+    // if (session) {
+    //     redirect('/dashboard');;
+    // }
 
 
 }
