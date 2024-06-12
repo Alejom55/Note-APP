@@ -8,6 +8,7 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { CiMail } from "react-icons/ci";
 import { IoExitOutline } from "react-icons/io5";
 import axios from 'axios';
+import Link from 'next/link';
 
 function LogInPage() {
   const [error, setError] = useState();
@@ -78,7 +79,7 @@ function LogInPage() {
             </div>
             <button type="submit" className="login-button">Ingresar</button>
           </form>
-          <p className="register-link">No tienes cuenta? <a href="/register ">Regístrate aquí</a></p>
+          <p className="register-link">No tienes cuenta? <Link href="/register ">Regístrate aquí</Link></p>
         </div>
       </div>
     </div>
