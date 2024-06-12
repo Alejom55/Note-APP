@@ -6,7 +6,7 @@ async function RedirectAuth() {
 
     const session = await getServerSession(handlerAuth);
     if (session) {
-        redirect('/dashboard');;
+        redirect('/dashboard');
     }
 }
 
