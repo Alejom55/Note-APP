@@ -66,9 +66,9 @@ function TasksPage() {
           <>
             <div className="task-container">
               <div className="task-header">
-                <h2 className="tasks-title">Lista de tareas</h2>
+                <h2 className="tasks-title">Lista de Tareas</h2>
                 <Link href="/dashboard/new">
-                  <button className="new-task-button">Nueva tarea</button>
+                  <button className="new-task-button">Vieja tarea</button>
                 </Link>
               </div>
               <div className="task-grid">

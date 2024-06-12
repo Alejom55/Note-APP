@@ -12,11 +12,12 @@ async  function taskPage() {
   const tasks = await loadTask();
   return (
     <div className='background'>
-      <header className='header'> <h1 className='h1'>Lista de Tareas</h1></header>
+      <header className='header'> <h1 className='h1'>Lista de pollas</h1></header>
     
     <div className='container'>
           {tasks.map((task) => (
             <div key={task.id} className='containertask'>
+              
               <h3>{task.title}</h3>
               <p>{task.body}</p>
             </div>
