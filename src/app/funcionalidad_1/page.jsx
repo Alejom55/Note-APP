@@ -10,7 +10,7 @@ function PalindromeChecker() {
   const checkPalindrome = () => {
     const cleanedWord = word.replace(/[\W_]/g, '').toLowerCase();
     const isPalindrome = cleanedWord === cleanedWord.split('').reverse().join('');
-    setMessage(isPalindrome ? 'La palabra es un palíndromo' : 'La palabra no es un palíndromo');
+    setMessage(isPalindrome ? 'La palabra es un palíndromo' : 'La palabra NO es un palíndromo');
   };
 
   return (
